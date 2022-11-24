@@ -80,7 +80,7 @@ if (-r $prefix_file) {
     close(DESC) ;
 } else {
     $pwdnam = $ENV{'PWD'} ;
-    $pwdnam =~ s#(\w*/)*(\w+)$#\2# ;
+    $pwdnam =~ s#/(\w*/)*(\w+)$#$2# ;
     print INDX "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2//EN\">\n\n" ;
     print INDX "<html>\n" ;
     print INDX "<head>\n" ;
