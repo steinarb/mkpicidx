@@ -13,7 +13,6 @@ $prefix_file="$cur_dir/prefix.html" ;
 $suffix_file="$cur_dir/suffix.html" ;
 
 #
-$quant_no_cols=16 ;
 $thumbnail_height=66 ;		# Height in pixels
 
 opendir(IMAGEDIR, ".");
