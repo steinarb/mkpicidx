@@ -38,8 +38,6 @@ foreach $f (@jpgfiles) {
     local($pnm) = ("$icon_dir/$rootname.pnm") ;
     print STDERR "Lager og skalerer $pnm\n" ;
     system("djpeg $f | pnmscale -height $thumbnail_height >$pnm") ;
-    #system("djpeg $f >$pnm") ;
-#    system("djpeg $f | pnmscale -height $thumbnail_height | ppmnorm >$pnm") ;
     push (@pnmfiles,$pnm) ;
     print STDERR "rootname: $rootname  rootpath: $rootpath\n" ;
     push(@rootnames, $rootname) ;
@@ -52,7 +50,6 @@ foreach $f (@giffiles) {
     local($pnm) = ("$icon_dir/$rootname.pnm") ;
     print STDERR "Lager og skalerer $pnm\n" ;
     system("giftopnm $f | pnmscale -height $thumbnail_height >$pnm") ;
-#   system("giftopnm $f | pnmscale -height $thumbnail_height | ppmnorm >$pnm");
     push (@pnmfiles,$pnm) ;
     print STDERR "rootname: $rootname  rootpath: $rootpath\n" ;
     push(@rootnames, $rootname) ;
@@ -68,8 +65,6 @@ foreach $f (@pnmfiles) {
     local ($rootname) = &rootname($f) ;
     local ($png) = ("$rootname.png") ;
     print STDERR "Lager $png\n" ;
-#    system ("ppmquant -fs $quant_no_cols $f | ppmtogif >$gif") ;
-#    system ("ppmtogif $f >$gif") ;
     system ("pnmcrop $f | pnmtopng >$png") ;
 }
 print STDERR "Sletter PNM-filer..." ;
@@ -164,7 +159,6 @@ print STDERR "Ferdig\n" ;
 
 sub rootname {
     local($n) = @_ ;
-#    $n =~ s/^.*\/([^\/]+)$/\1/ ;
     $n =~ s/\.\w{0,3}$// ;
     $n ;
 }
