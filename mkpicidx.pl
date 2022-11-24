@@ -1,7 +1,7 @@
 #!/usr/bin/perl
-# Lager smaa "-icon.gif" versjoner av alle tiff-filene i katalogen
-# Disse har faatt redusert fargene. Alle ikoner deler paa en pott
-# av $quant_no_cols farger.
+# Scans a directory with JPEG files, and generates PNG
+# thumbnails for all JPEG files and an index.html listing
+# the JPEGs and displaying the thumbnails
 #
 # Steinar Bang, 940916
 
