@@ -21,7 +21,7 @@ opendir(IMAGEDIR, ".");
 @allfiles = sort(readdir(IMAGEDIR));
 closedir(IMAGEDIR) ;
 
-@jpgfiles = grep(/.*\.jpg/, @allfiles) ;
+@jpgfiles = grep(/.*\.jpg/i, @allfiles) ;
 @giffiles = grep(/.*\.gif/, @allfiles) ;
 @rootnames = () ;
 @rootpaths = () ;
