@@ -1,0 +1,29 @@
+* Picture index generation script
+
+This is a perl script that scans a directory containing JPEG files, and generates an index.html listing the files and thumbnails to display in the index.html file.
+
+** Usage on a debian system
+
+Procedure:
+ 1. Clone the git repo
+    #+begin_example
+      mdir -p ~/git
+      cd ~/git/
+      git clone https://github.com/steinarb/mkpicidx.git
+    #+end_example
+ 2. Install the prerequisites
+    #+begin_example
+      apt update
+      apt install perl netpbm libjpeg-tools
+    #+end_example
+ 3. Go to a directory containing JPEGs and run the script with the full path to the script
+    #+begin_example
+      cd ~/Pictures/
+      ~/git/mkpicidx/mkpicidx.pl
+    #+end_example
+
+** License
+
+This is free software under the Apache License v2, copyright myself, Steinar Bang.
+
+See the LICENSE file for details.
