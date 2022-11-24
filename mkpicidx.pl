@@ -14,7 +14,6 @@ $suffix_file="$cur_dir/suffix.html" ;
 
 #
 $quant_no_cols=16 ;
-$thumbnail_height=40 ;		# Height in pixels
 $thumbnail_height=66 ;		# Height in pixels
 
 opendir(IMAGEDIR, ".");
@@ -39,6 +38,7 @@ foreach $f (@jpgfiles) {
     local($pnm) = ("$icon_dir/$rootname.pnm") ;
     print STDERR "Lager og skalerer $pnm\n" ;
     system("djpeg $f | pnmscale -height $thumbnail_height >$pnm") ;
+    #system("djpeg $f >$pnm") ;
 #    system("djpeg $f | pnmscale -height $thumbnail_height | ppmnorm >$pnm") ;
     push (@pnmfiles,$pnm) ;
     print STDERR "rootname: $rootname  rootpath: $rootpath\n" ;
@@ -59,22 +59,18 @@ foreach $f (@giffiles) {
     push(@rootpaths, $rootpath) ;
 }
 
-print STDERR "Kvantiserer alle PNM-filene..." ;
-system ("ppmquantall $quant_no_cols " . join(" ",@pnmfiles)) ;
-print STDERR "ferdig\n" ;
-
 print STDERR "Sletter gamle ikoner..." ;
-system("rm $icon_dir/*.gif") ;
+system("rm $icon_dir/*.png") ;
 print STDERR "ferdig\n" ;
 
-print STDERR "Lager GIF-ikoner:\n" ;
+print STDERR "Lager PNG-ikoner:\n" ;
 foreach $f (@pnmfiles) {
     local ($rootname) = &rootname($f) ;
-    local ($gif) = ("$rootname.gif") ;
-    print STDERR "Lager $gif\n" ;
+    local ($png) = ("$rootname.png") ;
+    print STDERR "Lager $png\n" ;
 #    system ("ppmquant -fs $quant_no_cols $f | ppmtogif >$gif") ;
 #    system ("ppmtogif $f >$gif") ;
-    system ("pnmcrop $f | ppmtogif >$gif") ;
+    system ("pnmcrop $f | pnmtopng >$png") ;
 }
 print STDERR "Sletter PNM-filer..." ;
 system("rm $icon_dir/*.pnm") ;
@@ -103,7 +99,7 @@ $cur_counter = 1;
 foreach $f (@jpgfiles) {
     local ($rootname, $ext) = split(/\./, $f) ;
     local ($txt) = ("$rootname.txt") ;
-    local ($icon) = ("$icon_dir/$rootname.gif") ;
+    local ($icon) = ("$icon_dir/$rootname.png") ;
     local ($jpg) = ($f) ;
     print INDX "<p><a name=\"jpeg$cur_counter\" href=\"$jpg\"><img src=\"$icon\" alt=\"[$jpg]\"></a><br>\n" ;
     $cur_counter++ ;
